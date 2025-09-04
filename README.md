@@ -130,4 +130,9 @@ O backlog foi estruturado em **Scrum** (com Sprints de 2 semanas).
 
 ## 🎨 UX/UI
 
-Tela inicial do aplicativo: ![Tela Inicial](https://user-images.githubusercontent.com/.../ui_home.png)
+Tela inicial: ![Tela Inicial](https://github.com/user-attachments/assets/44bfb801-9943-484c-b1bc-71474474233e)
+Atualidades: ![Atualidaes](https://github.com/user-attachments/assets/19bdfaa4-18d1-4e44-9284-f46fc246fe15)
+Gastronomia: ![Gastronomia](https://github.com/user-attachments/assets/df46fa33-0394-43e9-8c5f-971948865a38)
+Kids: ![Kids](https://github.com/user-attachments/assets/d82250dd-c06c-4d21-a189-81b950441559)
+Turismo: ![Gastronomia](https://github.com/user-attachments/assets/c8120f48-6f22-419a-9331-286090142fa6)
+Entretenimento: ![Entretenimento](https://github.com/user-attachments/assets/2fb4a8d4-ca4a-46ff-bfd9-32367f5d3177)
