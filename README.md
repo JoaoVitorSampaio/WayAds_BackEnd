@@ -1,138 +1,74 @@
-# 📱 WayAds - Sistema de Mídia iDOOH
+# WayAds Backend - Kotlin + Spring Boot
 
-## 📚 Visão Geral
+Este projeto é o **backend** do aplicativo **WayAds**, desenvolvido em **Kotlin** utilizando o framework **Spring Boot**.
 
-Este repositório contém o desenvolvimento do **WayAds**, um sistema de **mídia interativa iDOOH (In-door Out-of-Home)** voltado para carros de aplicativo (Uber, 99Pop, etc.).  
+## Tecnologias Utilizadas
 
-O aplicativo exibe uma **tela interativa para passageiros** durante a corrida, oferecendo:
-
-- **Categorias de conteúdo** (Kids, Turismo, Gastronomia, Atualidades, Entretenimento)
-- **Recomendações inteligentes** (restaurantes, pontos turísticos, notícias)
-- **Integração com anúncios publicitários** (banner fixo, rodapé)
-- **Geolocalização** para exibir anúncios e conteúdos relevantes de acordo com o raio de proximidade
-- **QR Codes interativos** para levar o passageiro até promoções e links externos
+* **Linguagem:** Kotlin  
+* **Framework:** Spring Boot  
+* **Banco de Dados (dev):** H2 Database (memória, para testes)  
+* **ORM:** Spring Data JPA  
+* **Gerenciamento de Dependências:** Gradle Kotlin DSL  
 
 ---
 
-## 🎯 Objetivos do Projeto
+## Arquitetura
 
-- ✅ Criar um sistema de entretenimento para passageiros em corridas de aplicativo  
-- ✅ Aumentar a interação e engajamento através de conteúdo dinâmico  
-- ✅ Gerar monetização via anúncios geolocalizados
-- ✅ Gerar um relatório de métricas para as empresas anunciantes
-- ✅ Implementar arquitetura escalável usando Flutter + API Backend  
+O projeto segue uma **Clean Architecture (Arquitetura Limpa simplificada)**, organizada em camadas bem definidas:
 
----
+- **Presentation (Controller):** responsável por expor endpoints REST e receber as requisições do frontend.  
+- **Application (Service/DTO):** contém a lógica de aplicação e orquestra as regras de negócio.  
+- **Domain (Model/Repository):** núcleo do sistema, representando as entidades e regras essenciais (ex: `Anuncio`).  
+- **Infrastructure:** suporte técnico (tratamento de exceções, utilitários, persistência com Spring Data JPA).  
 
-## 🛠️ Linguagens e Tecnologias
+Esse formato garante baixo acoplamento e alta coesão, permitindo que as regras de negócio evoluam sem impacto direto na interface ou na infraestrutura.
 
-- **Flutter/Dart** → desenvolvimento multiplataforma  
-- **Provider / Riverpod** → gerenciamento de estado  
-- **Dio / http** → consumo de API  
-- **Hive / SQLite** → cache local offline  
-- **Geolocator** → geolocalização em tempo real  
-- **qr_flutter** → geração de QR Codes  
-- **Firebase ou FastAPI/NestJS** → backend para anúncios e métricas  
+## Benefícios da Estrutura
 
-<div style="display: inline_block"><br>
-  <img align="center" alt="Flutter" height="50" width="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" />
-  <img align="center" alt="Dart" height="50" width="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" />
-  <img align="center" alt="Firebase" height="50" width="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" />
-  <img align="center" alt="Android" height="50" width="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/android/android-original.svg" />
-</div>
+- **Organização clara:** responsabilidades bem definidas entre camadas.  
+- **Escalabilidade:** fácil adicionar novas features sem quebrar o código existente.  
+- **Testabilidade:** cada camada pode ser testada de forma isolada.  
+- **Padronização:** segue boas práticas de desenvolvimento com Spring Boot + Kotlin.  
 
 ---
 
-## 🏗️ Arquitetura do Projeto
+## Estrutura de Pacotes  
 
-👉 *(Espaço reservado – incluir futuramente o diagrama da arquitetura com Frontend, Backend, APIs e banco de dados)*
+### 📂 `application`
+Contém a lógica de **aplicação** (casos de uso).  
 
----
-
-## 🚀 Como Executar
-
-### 1. Clone o Repositório
-
-```bash
-git clone https://github.com/JoaoVitorSampaio/WayAds_BackEnd.git
-cd WayAds_BackEnd
-```
-
-### 2. Instale o Flutter
-
-Siga o guia oficial: [Instalação do Flutter](https://docs.flutter.dev/get-started/install)
-
-### 3. Configure o Ambiente
-
-Verifique se está tudo pronto com:
-
-```bash
-flutter doctor
-```
-
-### 4. Instale as Dependências
-
-```bash
-flutter pub get
-```
-
-### 5. Rode o Projeto
-
-```bash
-flutter run
-```
+- **`dto`** – Define os objetos de transferência de dados (Data Transfer Objects), usados para trafegar informações entre camadas e expor dados de forma segura.  
+- **`service`** – Implementa os serviços de aplicação, coordenando chamadas para repositórios, validações e regras de negócio.  
 
 ---
 
-## 📂 Estrutura Inicial do Código
+### 📂 `domain`
+Define o **núcleo do domínio**.  
 
-```
-lib/
- ├── main.dart          # ponto inicial do app
- ├── models.dart        # modelos de dados (Category, ContentItem, Ads)
- ├── home.dart          # tela principal com menu lateral
- ├── category_page.dart # listagem de conteúdos por categoria
-```
+- **`model`** – Entidades e objetos de domínio persistidos no banco de dados. Exemplo: `Anuncio`.  
+- **`repository`** – Interfaces para acesso a dados, geralmente estendendo `JpaRepository` ou `CrudRepository`.  
 
 ---
 
-## 🧪 Backlog do Projeto
+### 📂 `infrastructure`
+Contém aspectos técnicos e transversais.  
 
-O backlog foi estruturado em **Scrum** (com Sprints de 2 semanas).  
-- **Sprint 1:** Estrutura base + CRUD anúncios + CRUD categorias + geolocalização básica  
-- **Sprint 2:** Conteúdo expandido + segmentação de anúncios + métricas + QR Codes + modo kiosk  
-
----
-
-## 👨‍💻 Equipe
-
-- **Frontend:** 4 desenvolvedores  
-- **Backend:** 5 desenvolvedores  
-- **Metodologia:** Scrum com Sprints de 2 semanas  
+- **`exception`** – Classes para tratamento e padronização de exceções da aplicação.  
+- **`utils`** – Utilitários genéricos reutilizáveis em várias partes do projeto.  
 
 ---
 
-## 🆘 Problemas Comuns
+### 📂 `presentation`
+Camada de **exposição** da aplicação.  
 
-- **Erro `Flutter SDK not found`**  
-  → Confirme que o `flutter/bin` está no seu PATH  
-
-- **Erro ao rodar `flutter run`**  
-  → Verifique se um emulador Android ou dispositivo físico está conectado  
-
-- **Dependências não encontradas**  
-  → Rode novamente:
-  ```bash
-  flutter pub get
-  ```
+- **`controller`** – Controllers REST, responsáveis por receber requisições HTTP, chamar os serviços e retornar respostas adequadas em JSON.  
 
 ---
 
-## 🎨 UX/UI
+### 📂 `resources`
+Contém arquivos de configuração e recursos do projeto.  
 
-Tela inicial: ![Tela Inicial](https://github.com/user-attachments/assets/44bfb801-9943-484c-b1bc-71474474233e)
-Atualidades: ![Atualidaes](https://github.com/user-attachments/assets/19bdfaa4-18d1-4e44-9284-f46fc246fe15)
-Gastronomia: ![Gastronomia](https://github.com/user-attachments/assets/df46fa33-0394-43e9-8c5f-971948865a38)
-Kids: ![Kids](https://github.com/user-attachments/assets/d82250dd-c06c-4d21-a189-81b950441559)
-Turismo: ![Gastronomia](https://github.com/user-attachments/assets/c8120f48-6f22-419a-9331-286090142fa6)
-Entretenimento: ![Entretenimento](https://github.com/user-attachments/assets/2fb4a8d4-ca4a-46ff-bfd9-32367f5d3177)
+- **`application.properties`** – Configurações principais do Spring Boot (datasource, logging, profiles, etc).  
+- **`static` / `templates`** – Estrutura padrão para servir arquivos estáticos ou templates (se aplicável).  
+
+---
