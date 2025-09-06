@@ -1,7 +1,8 @@
 package com.wayads.backend_api.application.service
 
-import com.wayads.backend_api.application.dto.AnuncioRequestDTO
-import com.wayads.backend_api.application.dto.AnuncioResponseDTO
+
+import com.wayads.backend_api.application.dto.request.AnuncioRequestDTO
+import com.wayads.backend_api.application.dto.response.AnuncioResponseDTO
 import com.wayads.backend_api.domain.model.Anuncio
 import com.wayads.backend_api.domain.model.Localizacao
 import com.wayads.backend_api.domain.repository.AnuncioRepository
