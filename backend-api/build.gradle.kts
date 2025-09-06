@@ -38,6 +38,8 @@ dependencies {
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 	runtimeOnly("com.h2database:h2")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
+	implementation("com.rometools:rome:2.1.0")
+
 }
 
 kotlin {

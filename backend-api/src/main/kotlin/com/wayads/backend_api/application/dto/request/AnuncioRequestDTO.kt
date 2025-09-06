@@ -1,4 +1,4 @@
-package com.wayads.backend_api.application.dto
+package com.wayads.backend_api.application.dto.request
 
 import java.time.LocalDateTime
 
@@ -17,19 +17,3 @@ data class AnuncioRequestDTO(
     val raioCobertura: Double? = null
 )
 
-// DTO para enviar dados como resposta da API
-data class AnuncioResponseDTO(
-    val id: Long,
-    val titulo: String,
-    val descricao: String,
-    val imagemUrl: String?,
-    val videoUrl: String?,
-    val ativo: Boolean,
-    val dataInicio: LocalDateTime,
-    val dataFim: LocalDateTime?,
-    val prioridade: Int,
-    val latitude: Double?,
-    val longitude: Double?,
-    val visualizacoes: Long,
-    val cliques: Long
-)

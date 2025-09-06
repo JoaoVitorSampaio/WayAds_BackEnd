@@ -1,7 +1,8 @@
 package com.wayads.backend_api.presentation.controller
 
-import com.wayads.backend_api.application.dto.AnuncioRequestDTO
-import com.wayads.backend_api.application.dto.AnuncioResponseDTO
+
+import com.wayads.backend_api.application.dto.request.AnuncioRequestDTO
+import com.wayads.backend_api.application.dto.response.AnuncioResponseDTO
 import com.wayads.backend_api.application.service.AnuncioService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
