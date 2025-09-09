@@ -6,15 +6,19 @@ import java.util.*
 @Entity
 data class Kids(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long = 0, // ID autogerado pelo banco
+    val id: Long = 0,
 
-    val nome: String, // Nome do desenho (ex: Galinha Pintadinha)
+    var nome: String,
 
     @Lob
     @Column(columnDefinition = "TEXT")
-    val urlVideo: String, // Link ou caminho do vídeo
+    var descricao: String,
 
-    val ativo: Boolean = true, // Define se o desenho está disponível para exibição
+    @Lob
+    @Column(columnDefinition = "TEXT")
+    var urlVideo: String,
 
-    val criadoEm: Date = Date() // Data de criação do registro
+    var ativo: Boolean = true,
+
+    val criadoEm: Date = Date()
 )
