@@ -19,7 +19,7 @@ class KidsService(
     fun buscarPorId(id: Long): KidsResponse =
         KidsMapper.toResponse(
             repository.findById(id)
-                .orElseThrow { RuntimeException("Desenho não encontrado") }
+                .orElseThrow { KidsNaoEncontradoException("Desenho não encontrado") }
         )
 
     // Criar um novo desenho
@@ -31,7 +31,7 @@ class KidsService(
     // Atualizar um desenho existente
     fun atualizar(id: Long, request: KidsRequest): KidsResponse {
         val existente = repository.findById(id)
-            .orElseThrow { RuntimeException("Desenho não encontrado") }
+            .orElseThrow { KidsNaoEncontradoException("Desenho não encontrado") }
 
         val atualizado = existente.copy(
             nome = request.nome,
