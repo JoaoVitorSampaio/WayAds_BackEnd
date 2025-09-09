@@ -1,27 +1,17 @@
-package com.wayads.backend_api.domain.model
+package com.wayads.backend_api.application.dto.response
 
-import jakarta.persistence.*
 import java.math.BigDecimal
 import java.time.LocalTime
 
-@Embeddable
-data class LocalizacaoTurismo( //lembrar refatorar isso aqui
-    val cidade: String,
-    val estado: String
-)
-
-@Entity
-data class Turismo(
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long? = null,
-
+data class TurismoResponseDTO(
+    val id: Long,
     var nome: String,
     var descricao: String,
     var categoria: String,
     var urlFotoPrincipal: String,
     var urlVideo: String?,
-    @Embedded
-    var localizacao: LocalizacaoTurismo,
+    var cidade: String,
+    var estado: String,
     var latitude: Double?,
     var longitude: Double?,
     var horarioAbertura: LocalTime?,

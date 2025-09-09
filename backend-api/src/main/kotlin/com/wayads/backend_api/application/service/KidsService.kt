@@ -3,6 +3,7 @@ package com.wayads.backend_api.application.service
 import com.wayads.backend_api.application.dto.request.KidsRequest
 import com.wayads.backend_api.application.dto.response.KidsResponse
 import com.wayads.backend_api.domain.repository.KidsRepository
+import com.wayads.backend_api.infrastructure.exception.KidsNaoEncontradoException
 import com.wayads.backend_api.infrastructure.utils.mapper.KidsMapper
 import org.springframework.stereotype.Service
 
@@ -28,17 +29,15 @@ class KidsService(
         return KidsMapper.toResponse(repository.save(entity))
     }
 
-    // Atualizar um desenho existente
     fun atualizar(id: Long, request: KidsRequest): KidsResponse {
-        val existente = repository.findById(id)
+        var existente = repository.findById(id)
             .orElseThrow { KidsNaoEncontradoException("Desenho não encontrado") }
 
-        val atualizado = existente.copy(
-            nome = request.nome,
-            descricao = request.descricao,
-            videoUrl = request.videoUrl
-        )
-        return KidsMapper.toResponse(repository.save(atualizado))
+        existente.nome = request.nome
+        existente.descricao = request.descricao
+        existente.urlVideo = request.videoUrl
+
+        return KidsMapper.toResponse(repository.save(existente))
     }
 
     // Deletar um desenho

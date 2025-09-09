@@ -15,7 +15,7 @@ class AtualidadeController(
     @GetMapping
     fun listarTodas(): List<AtualidadeResponse> = service.listarTodas()
 
-    @GetMapping("/{id}")
+        @GetMapping("/{id}")
     fun buscarPorId(@PathVariable id: Long): AtualidadeResponse = service.buscarPorId(id)
 
     @GetMapping("/categoria/{categoria}")

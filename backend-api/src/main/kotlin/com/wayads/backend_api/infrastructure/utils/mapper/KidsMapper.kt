@@ -9,14 +9,14 @@ object KidsMapper {
     fun toEntity(request: KidsRequest) = Kids(
         nome = request.nome,
         descricao = request.descricao,
-        videoUrl = request.videoUrl
+        urlVideo = request.videoUrl
     )
 
     fun toResponse(entity: Kids) = KidsResponse(
         id = entity.id,
         nome = entity.nome,
         descricao = entity.descricao,
-        videoUrl = entity.videoUrl,
+        videoUrl = entity.urlVideo,
         criadoEm = entity.criadoEm
     )
 }
