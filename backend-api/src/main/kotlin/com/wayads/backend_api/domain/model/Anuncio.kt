@@ -1,6 +1,6 @@
 package com.wayads.backend_api.domain.model
 
-import jakarta.persistence.*
+import  jakarta.persistence.*
 import jakarta.validation.constraints.NotBlank
 import java.time.LocalDateTime
 
