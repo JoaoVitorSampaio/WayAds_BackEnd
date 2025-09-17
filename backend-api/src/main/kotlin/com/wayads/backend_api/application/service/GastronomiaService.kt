@@ -1,9 +1,9 @@
-package com.wayads.application.service
+package com.wayads.backend_api.application.service
 
 
-import com.wayads.application.dto.GastronomiaRequest
-import com.wayads.application.dto.GastronomiaResponse
-import com.wayads.domain.repository.GastronomiaRepository
+import com.wayads.backend_api.application.dto.request.GastronomiaRequest
+import com.wayads.backend_api.application.dto.response.GastronomiaResponse
+import com.wayads.backend_api.domain.repository.GastronomiaRepository
 import jakarta.persistence.EntityNotFoundException
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional

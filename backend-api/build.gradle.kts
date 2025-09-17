@@ -12,7 +12,7 @@ description = "Back-end do projeto WayAds desenvolvido para a materia de Engenha
 
 java {
 	toolchain {
-		languageVersion = JavaLanguageVersion.of(22)
+		languageVersion = JavaLanguageVersion.of(21)
 	}
 }
 

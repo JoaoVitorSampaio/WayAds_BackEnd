@@ -1,7 +1,7 @@
-package com.wayads.application.dto
+package com.wayads.backend_api.application.dto.request
 
 
-import com.wayads.domain.model.Gastronomia
+import com.wayads.backend_api.domain.model.Gastronomia
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.Size
 

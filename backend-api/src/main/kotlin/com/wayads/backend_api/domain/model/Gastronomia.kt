@@ -1,4 +1,4 @@
-package com.wayads.domain.model
+package com.wayads.backend_api.domain.model
 
 
 import jakarta.persistence.*

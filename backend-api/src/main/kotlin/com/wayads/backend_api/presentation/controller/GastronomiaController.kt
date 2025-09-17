@@ -1,9 +1,9 @@
-package com.wayads.presentation.controller
+package com.wayads.backend_api.presentation.controller
 
 
-import com.wayads.application.dto.GastronomiaRequest
-import com.wayads.application.dto.GastronomiaResponse
-import com.wayads.application.service.GastronomiaService
+import com.wayads.backend_api.application.dto.request.GastronomiaRequest
+import com.wayads.backend_api.application.dto.response.GastronomiaResponse
+import com.wayads.backend_api.application.service.GastronomiaService
 import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity

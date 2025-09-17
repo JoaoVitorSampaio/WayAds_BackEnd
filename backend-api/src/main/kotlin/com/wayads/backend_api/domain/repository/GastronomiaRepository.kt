@@ -1,7 +1,7 @@
-package com.wayads.domain.repository
+package com.wayads.backend_api.domain.repository
 
 
-import com.wayads.domain.model.Gastronomia
+import com.wayads.backend_api.domain.model.Gastronomia
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 

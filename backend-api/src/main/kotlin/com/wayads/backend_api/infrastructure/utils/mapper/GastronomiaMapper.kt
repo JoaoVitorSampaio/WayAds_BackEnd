@@ -1,9 +1,9 @@
-package com.wayads.infrastructure.utils.mapper
+package com.wayads.backend_api.infrastructure.utils.mapper
 
 
-import com.wayads.application.dto.GastronomiaRequest
-import com.wayads.application.dto.GastronomiaResponse
-import com.wayads.domain.model.Gastronomia
+import com.wayads.backend_api.application.dto.request.GastronomiaRequest
+import com.wayads.backend_api.application.dto.response.GastronomiaResponse
+import com.wayads.backend_api.domain.model.Gastronomia
 
 
 object GastronomiaMapper {

@@ -1,7 +1,7 @@
-package com.wayads.application.dto
+package com.wayads.backend_api.application.dto.response
 
 
-import com.wayads.domain.model.Gastronomia
+import com.wayads.backend_api.domain.model.Gastronomia
 import java.time.LocalDateTime
 
 
