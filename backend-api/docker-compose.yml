@@ -1,0 +1,24 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:14-alpine
+    container_name: wayads-postgres
+    environment:
+      POSTGRES_USER: wayads
+      POSTGRES_PASSWORD: changeme
+      POSTGRES_DB: wayadsdb
+      POSTGRES_INITDB_ARGS: "--auth-host=md5"
+    ports:
+      - "5433:5432"  # Mudança aqui: porta externa 5433
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U wayads -d wayadsdb"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
+    driver: local

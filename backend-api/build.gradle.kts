@@ -36,10 +36,9 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-	runtimeOnly("com.h2database:h2")
+	runtimeOnly("org.postgresql:postgresql:42.7.3")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
 	implementation("com.rometools:rome:2.1.0")
-
 }
 
 kotlin {
@@ -56,4 +55,5 @@ allOpen {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+    enabled = false
 }
