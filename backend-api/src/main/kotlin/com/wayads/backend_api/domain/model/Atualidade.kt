@@ -14,17 +14,14 @@ data class Atualidade(
 
     val titulo: String,
 
-    @Lob
     @Column(columnDefinition = "TEXT")
     val descricao: String,
 
-    @Lob
     @Column(columnDefinition = "TEXT")
     val fotoUrl: String,
 
     val fonte: String,
 
-    @Lob
     @Column(columnDefinition = "TEXT")
     val linkQr: String,
 
