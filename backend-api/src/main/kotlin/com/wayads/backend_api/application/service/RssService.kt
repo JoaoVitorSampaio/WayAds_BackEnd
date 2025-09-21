@@ -32,7 +32,7 @@ class RssService(
             val url = URL(urlStr)
             val feed = SyndFeedInput().build(XmlReader(url))
 
-            feed.entries.forEach { entry ->
+            feed.entries.take(10).forEach { entry ->
                 val descricaoHtml = entry.description?.value ?: ""
                 val fotoUrl = extrairImagem(descricaoHtml)
 
