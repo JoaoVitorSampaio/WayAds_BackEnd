@@ -1,14 +1,14 @@
 package com.wayads.backend_api.infrastructure.utils.mapper
 
 
-import com.wayads.backend_api.application.dto.request.GastronomiaRequest
-import com.wayads.backend_api.application.dto.response.GastronomiaResponse
-import com.wayads.backend_api.domain.model.Gastronomia
+import com.wayads.backend_api.application.dto.request.PontoGastronomicoRequest
+import com.wayads.backend_api.application.dto.response.PontoGastronomicoResponse
+import com.wayads.backend_api.domain.model.PontoGastronomico
 
 
-object GastronomiaMapper {
-   fun toEntity(request: GastronomiaRequest): Gastronomia {
-       return Gastronomia(
+object PontoGastronomicoMapper {
+   fun toEntity(request: PontoGastronomicoRequest): PontoGastronomico {
+       return PontoGastronomico(
            nome = request.nome,
            descricao = request.descricao,
            localizacao = request.localizacao,
@@ -19,8 +19,8 @@ object GastronomiaMapper {
    }
 
 
-   fun toResponse(entity: Gastronomia): GastronomiaResponse {
-       return GastronomiaResponse(
+   fun toResponse(entity: PontoGastronomico): PontoGastronomicoResponse {
+       return PontoGastronomicoResponse(
            id = entity.id!!,
            nome = entity.nome,
            descricao = entity.descricao,

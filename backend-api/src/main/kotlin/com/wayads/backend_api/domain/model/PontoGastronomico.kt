@@ -10,8 +10,8 @@ import java.time.LocalDateTime
 
 @Entity
 @EntityListeners(AuditingEntityListener::class)
-@Table(name = "gastronomia")
-data class Gastronomia(
+@Table(name = "pontos_gastronomicos")
+data class PontoGastronomico(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,

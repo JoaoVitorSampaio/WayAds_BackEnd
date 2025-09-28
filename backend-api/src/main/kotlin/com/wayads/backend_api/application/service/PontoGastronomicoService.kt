@@ -1,44 +1,44 @@
 package com.wayads.backend_api.application.service
 
 
-import com.wayads.backend_api.application.dto.request.GastronomiaRequest
-import com.wayads.backend_api.application.dto.response.GastronomiaResponse
-import com.wayads.backend_api.domain.repository.GastronomiaRepository
+import com.wayads.backend_api.application.dto.request.PontoGastronomicoRequest
+import com.wayads.backend_api.application.dto.response.PontoGastronomicoResponse
+import com.wayads.backend_api.domain.repository.PontoGastronomicoRepository
 import jakarta.persistence.EntityNotFoundException
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 
 @Service
-class GastronomiaService(
-    private val gastronomiaRepository: GastronomiaRepository
+class PontoGastronomicoService(
+    private val gastronomiaRepository: PontoGastronomicoRepository
 ) {
 
 
     @Transactional
-    fun criar(request: GastronomiaRequest): GastronomiaResponse {
+    fun criar(request: PontoGastronomicoRequest): PontoGastronomicoResponse {
         val novaGastronomia = request.toEntity()
         val gastronomiaSalva = gastronomiaRepository.save(novaGastronomia)
-        return GastronomiaResponse.fromEntity(gastronomiaSalva)
+        return PontoGastronomicoResponse.fromEntity(gastronomiaSalva)
     }
 
 
     @Transactional(readOnly = true)
-    fun listarTodos(): List<GastronomiaResponse> {
-        return gastronomiaRepository.findAll().map { GastronomiaResponse.fromEntity(it) }
+    fun listarTodos(): List<PontoGastronomicoResponse> {
+        return gastronomiaRepository.findAll().map { PontoGastronomicoResponse.fromEntity(it) }
     }
 
 
     @Transactional(readOnly = true)
-    fun buscarPorId(id: Long): GastronomiaResponse {
+    fun buscarPorId(id: Long): PontoGastronomicoResponse {
         val gastronomia = gastronomiaRepository.findById(id)
             .orElseThrow { EntityNotFoundException("Ponto gastronômico com ID $id não encontrado.") }
-        return GastronomiaResponse.fromEntity(gastronomia)
+        return PontoGastronomicoResponse.fromEntity(gastronomia)
     }
 
 
     @Transactional
-    fun atualizar(id: Long, request: GastronomiaRequest): GastronomiaResponse {
+    fun atualizar(id: Long, request: PontoGastronomicoRequest): PontoGastronomicoResponse {
         val gastronomiaExistente = gastronomiaRepository.findById(id)
             .orElseThrow { EntityNotFoundException("Ponto gastronômico com ID $id não encontrado para atualização.") }
 
@@ -55,7 +55,7 @@ class GastronomiaService(
 
 
         val gastronomiaAtualizada = gastronomiaRepository.save(gastronomiaExistente)
-        return GastronomiaResponse.fromEntity(gastronomiaAtualizada)
+        return PontoGastronomicoResponse.fromEntity(gastronomiaAtualizada)
     }
 
 

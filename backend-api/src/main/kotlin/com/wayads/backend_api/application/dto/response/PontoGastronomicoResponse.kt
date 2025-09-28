@@ -1,11 +1,11 @@
 package com.wayads.backend_api.application.dto.response
 
 
-import com.wayads.backend_api.domain.model.Gastronomia
+import com.wayads.backend_api.domain.model.PontoGastronomico
 import java.time.LocalDateTime
 
 
-data class GastronomiaResponse(
+data class PontoGastronomicoResponse(
     val id: Long,
     val nome: String,
     val descricao: String,
@@ -17,8 +17,8 @@ data class GastronomiaResponse(
     val atualizadoEm: LocalDateTime?
 ) {
     companion object {
-        fun fromEntity(gastronomia: Gastronomia): GastronomiaResponse {
-            return GastronomiaResponse(
+        fun fromEntity(gastronomia: PontoGastronomico): PontoGastronomicoResponse {
+            return PontoGastronomicoResponse(
                 id = gastronomia.id!!,
                 nome = gastronomia.nome,
                 descricao = gastronomia.descricao,

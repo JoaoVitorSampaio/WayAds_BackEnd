@@ -1,12 +1,12 @@
 package com.wayads.backend_api.application.dto.request
 
 
-import com.wayads.backend_api.domain.model.Gastronomia
+import com.wayads.backend_api.domain.model.PontoGastronomico
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.Size
 
 
-data class GastronomiaRequest(
+data class PontoGastronomicoRequest(
     @field:NotBlank(message = "O nome não pode ser vazio.")
     @field:Size(max = 100, message = "O nome deve ter no máximo 100 caracteres.")
     val nome: String,
@@ -31,8 +31,8 @@ data class GastronomiaRequest(
 
     val fonte: String?
 ) {
-    fun toEntity(): Gastronomia {
-        return Gastronomia(
+    fun toEntity(): PontoGastronomico {
+        return PontoGastronomico(
             nome = this.nome,
             descricao = this.descricao,
             localizacao = this.localizacao,
