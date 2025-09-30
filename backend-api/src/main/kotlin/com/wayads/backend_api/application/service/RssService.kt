@@ -13,10 +13,11 @@ class RssService(
     private val repository: AtualidadeRepository
 ) {
     private val feedsPorCategoria = mapOf(
-        Categoria.POLITICA to "https://g1.globo.com/rss/g1/politica/",
-        Categoria.ECONOMIA to "https://g1.globo.com/rss/g1/economia/",
-        Categoria.MUNDO to "https://g1.globo.com/rss/g1/mundo/",
-        Categoria.TECNOLOGIA to "https://g1.globo.com/rss/g1/tecnologia/"
+        //Categoria.POLITICA to "https://g1.globo.com/rss/g1/politica/",
+        //Categoria.ECONOMIA to "https://g1.globo.com/rss/g1/economia/",
+        //Categoria.MUNDO to "https://g1.globo.com/rss/g1/mundo/",
+        //Categoria.TECNOLOGIA to "https://g1.globo.com/rss/g1/tecnologia/",
+        Categoria.ESPORTES to "https://ge.globo.com/rss/ge/"
     )
     private fun extrairImagem(html: String): String {
         val regex = Regex("src=\\\"(.*?)\\\"")
@@ -26,6 +27,7 @@ class RssService(
     private fun limparHtml(html: String): String {
         return html.replace(Regex("<.*?>"), "").trim()
     }
+
 
     fun importarNoticias() {
         feedsPorCategoria.forEach { (categoria, urlStr) ->
@@ -41,7 +43,7 @@ class RssService(
                     titulo = entry.title,
                     descricao = limparHtml(descricaoHtml).take(200),
                     fotoUrl = fotoUrl,
-                    fonte = "G1",
+                    fonte = if (categoria == Categoria.ESPORTES) "GE" else "G1", // ✅ CORRIGE A FONTE
                     linkQr = entry.link
                 )
                 repository.save(noticia)

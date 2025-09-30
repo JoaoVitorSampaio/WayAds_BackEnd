@@ -16,14 +16,19 @@ class FileUploadController(
 ) {
 
     @PostMapping("/upload")
-    fun uploadFile(@RequestParam("file") file: MultipartFile): ResponseEntity<Map<String, String>> {
-        val fileName = fileStorageService.store(file)
+    fun uploadFile(
+        @RequestParam("file") file: MultipartFile,
+        @RequestParam("folder", defaultValue = "general") folder: String
+    ): ResponseEntity<Map<String, String>> {
+        val filePath = fileStorageService.saveFile(file, folder)
         val fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
-            .path("/uploads/")
-            .path(fileName)
+            .path(filePath)
             .toUriString()
 
-        val response = mapOf("fileName" to fileName, "fileDownloadUri" to fileDownloadUri)
+        val response = mapOf(
+            "filePath" to filePath,
+            "fileDownloadUri" to fileDownloadUri
+        )
         return ResponseEntity.ok(response)
     }
 }

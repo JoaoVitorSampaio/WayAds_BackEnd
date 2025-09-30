@@ -4,5 +4,6 @@ enum class Categoria {
     ECONOMIA,
     POLITICA,
     MUNDO,
-    TECNOLOGIA
+    TECNOLOGIA,
+    ESPORTES
 }
