@@ -1,5 +1,6 @@
 package com.wayads.backend_api.domain.model
 
+import com.wayads.backend_api.domain.enums.CategoriaTurismo
 import jakarta.persistence.*
 import java.math.BigDecimal
 import java.time.LocalTime
@@ -17,7 +18,8 @@ data class Turismo(
 
     var nome: String,
     var descricao: String,
-    var categoria: String,
+    @Enumerated(EnumType.STRING)
+    var categoria: CategoriaTurismo,
     var urlFotoPrincipal: String,
     var urlVideo: String?,
     @Embedded

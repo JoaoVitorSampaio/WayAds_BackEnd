@@ -2,6 +2,7 @@ package com.wayads.backend_api.service
 
 import com.wayads.backend_api.application.dto.request.TurismoRequestDTO
 import com.wayads.backend_api.application.dto.response.TurismoResponseDTO
+import com.wayads.backend_api.domain.enums.CategoriaTurismo
 import com.wayads.backend_api.domain.model.LocalizacaoTurismo
 import com.wayads.backend_api.domain.model.Turismo
 import com.wayads.backend_api.domain.repository.TurismoRepository
@@ -26,6 +27,11 @@ class TurismoService(
     @Transactional(readOnly = true)
     fun listarPorCidade(cidade: String): List<TurismoResponseDTO> =
         turismoRepository.findByLocalizacaoCidadeIgnoreCase(cidade)
+            .map { TurismoMapper.toResponse(it) }
+
+    @Transactional(readOnly = true)
+    fun listarPorCategoria(categoria: CategoriaTurismo): List<TurismoResponseDTO> =
+        turismoRepository.findByCategoria(categoria)
             .map { TurismoMapper.toResponse(it) }
 
     @Transactional
