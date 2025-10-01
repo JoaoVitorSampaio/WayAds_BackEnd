@@ -2,6 +2,7 @@ package com.wayads.backend_api.infrastructure.utils.mapper
 
 import com.wayads.backend_api.application.dto.request.TurismoRequestDTO
 import com.wayads.backend_api.application.dto.response.TurismoResponseDTO
+import com.wayads.backend_api.domain.enums.CategoriaTurismo
 import com.wayads.backend_api.domain.model.LocalizacaoTurismo
 import com.wayads.backend_api.domain.model.Turismo
 

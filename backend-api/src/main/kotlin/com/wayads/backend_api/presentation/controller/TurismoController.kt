@@ -2,6 +2,7 @@ package com.wayads.backend_api.presentation.controller
 
 import com.wayads.backend_api.application.dto.request.TurismoRequestDTO
 import com.wayads.backend_api.application.dto.response.TurismoResponseDTO
+import com.wayads.backend_api.domain.enums.CategoriaTurismo
 import com.wayads.backend_api.service.TurismoService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -31,6 +32,13 @@ class TurismoController(
     @GetMapping("/cidade/{cidade}")
     fun listarPorCidade(@PathVariable cidade: String): ResponseEntity<List<TurismoResponseDTO>> {
         val response = turismoService.listarPorCidade(cidade)
+        return ResponseEntity.ok(response)
+    }
+
+    // GET /api/v1/turismo/categoria/{categoria} -> Listar pontos turísticos por categoria
+    @GetMapping("/categoria/{categoria}")
+    fun listarPorCategoria(@PathVariable categoria: CategoriaTurismo): ResponseEntity<List<TurismoResponseDTO>> {
+        val response = turismoService.listarPorCategoria(categoria)
         return ResponseEntity.ok(response)
     }
 
