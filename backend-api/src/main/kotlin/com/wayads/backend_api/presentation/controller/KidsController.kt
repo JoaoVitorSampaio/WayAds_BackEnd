@@ -36,4 +36,8 @@ class KidsController(
     @GetMapping("/nome/{nome}")
     fun listarPorNome(@PathVariable nome: String): List<KidsResponse> =
         service.listarPorNome(nome)
+
+    @GetMapping("/desenho/{nome}")
+    fun buscarPorNomeUnico(@PathVariable nome: String): KidsResponse = 
+        service.buscarPorNomeUnico(nome)
 }
