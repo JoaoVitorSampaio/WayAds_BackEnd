@@ -15,6 +15,7 @@ class FileStorageService {
     init {
         Files.createDirectories(uploadDir.resolve("posters"))
         Files.createDirectories(uploadDir.resolve("audios"))
+        Files.createDirectories(uploadDir.resolve("general"))
     }
 
     fun saveFile(file: MultipartFile, folder: String): String {
@@ -22,6 +23,29 @@ class FileStorageService {
         val filename = "${UUID.randomUUID()}-${file.originalFilename}"
         val targetPath = targetDir.resolve(filename)
         Files.copy(file.inputStream, targetPath, StandardCopyOption.REPLACE_EXISTING)
-        return "/files/$folder/$filename"
+
+        // 🔑 Não retorna path do Windows, só relativo
+        return "/api/v1/videos/$folder/$filename"
+    }
+
+    fun loadFileAsResource(filename: String, folder: String): org.springframework.core.io.Resource {
+        val targetDir = uploadDir.resolve(folder)
+        val filePath = targetDir.resolve(filename).normalize()
+        val resource = org.springframework.core.io.UrlResource(filePath.toUri())
+
+        if (resource.exists() && resource.isReadable) {
+            return resource
+        } else {
+            throw RuntimeException("Could not read the file!")
+        }
+    }
+
+    fun getVideoContentType(filename: String): String {
+        return when (filename.substringAfterLast('.', "").lowercase()) {
+            "mp4" -> "video/mp4"
+            "webm" -> "video/webm"
+            "ogg" -> "video/ogg"
+            else -> "application/octet-stream"
+        }
     }
 }
