@@ -1,47 +1,47 @@
 package com.wayads.backend_api.application.service
 
-
 import com.wayads.backend_api.application.dto.request.GastronomiaRequest
 import com.wayads.backend_api.application.dto.response.GastronomiaResponse
+import com.wayads.backend_api.domain.enums.CategoriaGastronomia
 import com.wayads.backend_api.domain.repository.GastronomiaRepository
+import com.wayads.backend_api.infrastructure.utils.mapper.GastronomiaMapper
 import jakarta.persistence.EntityNotFoundException
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-
 
 @Service
 class GastronomiaService(
     private val gastronomiaRepository: GastronomiaRepository
 ) {
 
-
     @Transactional
     fun criar(request: GastronomiaRequest): GastronomiaResponse {
-        val novaGastronomia = request.toEntity()
+        val novaGastronomia = GastronomiaMapper.toEntity(request)
         val gastronomiaSalva = gastronomiaRepository.save(novaGastronomia)
-        return GastronomiaResponse.fromEntity(gastronomiaSalva)
+        return GastronomiaMapper.toResponse(gastronomiaSalva)
     }
-
 
     @Transactional(readOnly = true)
     fun listarTodos(): List<GastronomiaResponse> {
-        return gastronomiaRepository.findAll().map { GastronomiaResponse.fromEntity(it) }
+        return gastronomiaRepository.findAll().map { GastronomiaMapper.toResponse(it) }
     }
-
 
     @Transactional(readOnly = true)
     fun buscarPorId(id: Long): GastronomiaResponse {
         val gastronomia = gastronomiaRepository.findById(id)
             .orElseThrow { EntityNotFoundException("Ponto gastronômico com ID $id não encontrado.") }
-        return GastronomiaResponse.fromEntity(gastronomia)
+        return GastronomiaMapper.toResponse(gastronomia)
     }
 
+    @Transactional(readOnly = true)
+    fun listarPorCategoria(categoria: CategoriaGastronomia): List<GastronomiaResponse> {
+        return gastronomiaRepository.findByCategoria(categoria).map { GastronomiaMapper.toResponse(it) }
+    }
 
     @Transactional
     fun atualizar(id: Long, request: GastronomiaRequest): GastronomiaResponse {
         val gastronomiaExistente = gastronomiaRepository.findById(id)
             .orElseThrow { EntityNotFoundException("Ponto gastronômico com ID $id não encontrado para atualização.") }
-
 
         // Atualiza os campos da entidade existente
         gastronomiaExistente.apply {
@@ -53,11 +53,9 @@ class GastronomiaService(
             fonte = request.fonte
         }
 
-
         val gastronomiaAtualizada = gastronomiaRepository.save(gastronomiaExistente)
-        return GastronomiaResponse.fromEntity(gastronomiaAtualizada)
+        return GastronomiaMapper.toResponse(gastronomiaAtualizada)
     }
-
 
     @Transactional
     fun remover(id: Long) {
